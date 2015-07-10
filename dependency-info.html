@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>SortPom &#x2013; About</title>
+    <title>SortPom &#x2013; Dependency Information</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -63,14 +63,14 @@
                           <a href="dependency-convergence.html" title="Dependency Convergence">Dependency Convergence</a>
             </li>
                       <li class="none">
-                          <a href="dependency-info.html" title="Dependency Information">Dependency Information</a>
-            </li>
+            <strong>Dependency Information</strong>
+          </li>
                       <li class="none">
                           <a href="distribution-management.html" title="Distribution Management">Distribution Management</a>
             </li>
                       <li class="none">
-            <strong>About</strong>
-          </li>
+                          <a href="index.html" title="About">About</a>
+            </li>
                       <li class="none">
                           <a href="issue-tracking.html" title="Issue Tracking">Issue Tracking</a>
             </li>
@@ -111,21 +111,44 @@
     <div id="bodyColumn">
       <div id="contentBox">
         <div class="section">
-<h2><a name="About_SortPom"></a>About SortPom</h2><a name="About_SortPom"></a>
-<p>A Maven plugin that sorts the pom.xml file.</p>
+<h2><a name="Dependency_Information"></a>Dependency Information</h2><a name="Dependency_Information"></a>
 <div class="section">
-<h3><a name="Project_Modules"></a>Project Modules</h3><a name="Project_Modules"></a>
-<p>This project has declared the following modules:</p>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Name</th>
-<th>Description</th></tr>
-<tr class="b">
-<td><a href="sortpom-sorter/index.html">SortPom Sorter</a></td>
-<td>The sorting functionality</td></tr>
-<tr class="a">
-<td><a href="sortpom-maven-plugin/index.html">SortPom Plugin</a></td>
-<td>A Maven plugin that sorts the pom.xml file.</td></tr></table></div></div>
+<h3><a name="Apache_Maven"></a>Apache Maven</h3><a name="Apache_Maven"></a>
+<div class="source">
+<pre>&lt;dependency&gt;
+  &lt;groupId&gt;com.github.ekryd.sortpom&lt;/groupId&gt;
+  &lt;artifactId&gt;sortpom-parent&lt;/artifactId&gt;
+  &lt;version&gt;2.4.1-SNAPSHOT&lt;/version&gt;
+  &lt;type&gt;pom&lt;/type&gt;
+&lt;/dependency&gt;</pre></div></div>
+<div class="section">
+<h3><a name="Apache_Buildr"></a>Apache Buildr</h3><a name="Apache_Buildr"></a>
+<div class="source">
+<pre>'com.github.ekryd.sortpom:sortpom-parent:pom:2.4.1-SNAPSHOT'</pre></div></div>
+<div class="section">
+<h3><a name="Apache_Ivy"></a>Apache Ivy</h3><a name="Apache_Ivy"></a>
+<div class="source">
+<pre>&lt;dependency org=&quot;com.github.ekryd.sortpom&quot; name=&quot;sortpom-parent&quot; rev=&quot;2.4.1-SNAPSHOT&quot;&gt;
+  &lt;artifact name=&quot;sortpom-parent&quot; type=&quot;pom&quot; /&gt;
+&lt;/dependency&gt;</pre></div></div>
+<div class="section">
+<h3><a name="Groovy_Grape"></a>Groovy Grape</h3><a name="Groovy_Grape"></a>
+<div class="source">
+<pre>@Grapes(
+@Grab(group='com.github.ekryd.sortpom', module='sortpom-parent', version='2.4.1-SNAPSHOT')
+)</pre></div></div>
+<div class="section">
+<h3><a name="Grails"></a>Grails</h3><a name="Grails"></a>
+<div class="source">
+<pre>compile 'com.github.ekryd.sortpom:sortpom-parent:2.4.1-SNAPSHOT'</pre></div></div>
+<div class="section">
+<h3><a name="Leiningen"></a>Leiningen</h3><a name="Leiningen"></a>
+<div class="source">
+<pre>[com.github.ekryd.sortpom/sortpom-parent &quot;2.4.1-SNAPSHOT&quot;]</pre></div></div>
+<div class="section">
+<h3><a name="SBT"></a>SBT</h3><a name="SBT"></a>
+<div class="source">
+<pre>libraryDependencies += &quot;com.github.ekryd.sortpom&quot; % &quot;sortpom-parent&quot; % &quot;2.4.1-SNAPSHOT&quot;</pre></div></div></div>
       </div>
     </div>
     <div class="clear">

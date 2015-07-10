@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>SortPom &#x2013; About</title>
+    <title>SortPom &#x2013; Reactor Dependency Convergence</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -60,8 +60,8 @@
                           <a href="dependencies.html" title="Dependencies">Dependencies</a>
             </li>
                       <li class="none">
-                          <a href="dependency-convergence.html" title="Dependency Convergence">Dependency Convergence</a>
-            </li>
+            <strong>Dependency Convergence</strong>
+          </li>
                       <li class="none">
                           <a href="dependency-info.html" title="Dependency Information">Dependency Information</a>
             </li>
@@ -69,8 +69,8 @@
                           <a href="distribution-management.html" title="Distribution Management">Distribution Management</a>
             </li>
                       <li class="none">
-            <strong>About</strong>
-          </li>
+                          <a href="index.html" title="About">About</a>
+            </li>
                       <li class="none">
                           <a href="issue-tracking.html" title="Issue Tracking">Issue Tracking</a>
             </li>
@@ -111,21 +111,56 @@
     <div id="bodyColumn">
       <div id="contentBox">
         <div class="section">
-<h2><a name="About_SortPom"></a>About SortPom</h2><a name="About_SortPom"></a>
-<p>A Maven plugin that sorts the pom.xml file.</p>
+<h2><a name="Reactor_Dependency_Convergence"></a>Reactor Dependency Convergence</h2>
+<table border="0" class="bodyTable"><caption>
+  <b>Legend:</b>
+</caption>
+<tr class="a">
+<td><img alt="error" src="images/icon_error_sml.gif" /></td>
+<td>At least one dependency has a differing version of the dependency or has SNAPSHOT dependencies.</td></tr></table><br />
+<table border="0" class="bodyTable"><caption>
+  <b>Statistics:</b>
+</caption>
+<tr class="b">
+<th>Number of modules:</th>
+<td>3</td></tr>
+<tr class="a">
+<th>Number of dependencies (NOD):</th>
+<td>21</td></tr>
+<tr class="b">
+<th>Number of unique artifacts (NOA):</th>
+<td>22</td></tr>
+<tr class="a">
+<th>Number of version-conflicting artifacts (NOC):</th>
+<td>1</td></tr>
+<tr class="b">
+<th>Number of SNAPSHOT artifacts (NOS):</th>
+<td>0</td></tr>
+<tr class="a">
+<th>Convergence (NOD/NOA):</th>
+<td><img alt="error" src="images/icon_error_sml.gif" />&#160;<b>95 %</b></td></tr>
+<tr class="b">
+<th>Ready for release (100 % convergence and no SNAPSHOTS):</th>
+<td><img alt="error" src="images/icon_error_sml.gif" />&#160;<b>Error</b><br />You do not have 100 % convergence.</td></tr></table></div>
 <div class="section">
-<h3><a name="Project_Modules"></a>Project Modules</h3><a name="Project_Modules"></a>
-<p>This project has declared the following modules:</p>
+<h3><a name="Dependencies_used_in_modules"></a>Dependencies used in modules</h3>
+<div class="section">
+<h4><a name="org.codehaus.plexus:plexus-utils"></a>org.codehaus.plexus:plexus-utils</h4>
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>Name</th>
-<th>Description</th></tr>
+<td><img alt="error" src="images/icon_error_sml.gif" /></td>
+<td>
+<table border="0" class="bodyTable">
 <tr class="b">
-<td><a href="sortpom-sorter/index.html">SortPom Sorter</a></td>
-<td>The sorting functionality</td></tr>
+<td width="25%">2.1</td>
+<td>
+<ol style="list-style-type: decimal">
+<li>com.github.ekryd.sortpom:sortpom-maven-plugin:maven-plugin:2.4.1-SNAPSHOT<br />\-&#160;org.apache.maven:maven-plugin-api:jar:3.2.5:compile<br />&#160;&#160;&#160;\-&#160;org.eclipse.sisu:org.eclipse.sisu.plexus:jar:0.3.0.M1:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;(org.codehaus.plexus:plexus-utils:jar:2.1:compile - omitted for conflict with 3.0.20)<br /></li><br /></ol></td></tr>
 <tr class="a">
-<td><a href="sortpom-maven-plugin/index.html">SortPom Plugin</a></td>
-<td>A Maven plugin that sorts the pom.xml file.</td></tr></table></div></div>
+<td width="25%">3.0.20</td>
+<td>
+<ol style="list-style-type: decimal">
+<li>com.github.ekryd.sortpom:sortpom-maven-plugin:maven-plugin:2.4.1-SNAPSHOT<br />\-&#160;org.apache.maven:maven-plugin-api:jar:3.2.5:compile<br />&#160;&#160;&#160;+-&#160;org.apache.maven:maven-model:jar:3.2.5:compile<br />&#160;&#160;&#160;|&#160;&#160;\-&#160;org.codehaus.plexus:plexus-utils:jar:3.0.20:compile<br />&#160;&#160;&#160;\-&#160;org.apache.maven:maven-artifact:jar:3.2.5:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;(org.codehaus.plexus:plexus-utils:jar:3.0.20:compile - omitted for duplicate)<br /></li><br /></ol></td></tr></table></td></tr></table></div></div>
       </div>
     </div>
     <div class="clear">
