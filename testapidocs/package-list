@@ -1,6 +1,5 @@
-sortpom.parameter
-sortpom.processinstruction
+sortpom
+sortpom.exception
+sortpom.logger
 sortpom.sort
-sortpom.util
 sortpom.verify
-sortpom.wrapper
