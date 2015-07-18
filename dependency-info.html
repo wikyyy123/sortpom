@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>SortPom &#x2013; Dependency Information</title>
+    <title>SortPom Sorter &#x2013; Dependency Information</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -17,7 +17,7 @@
   <body class="composite">
     <div id="banner">
                     <div id="bannerLeft">
-                SortPom
+                SortPom Sorter
                 </div>
                     <div class="clear">
         <hr/>
@@ -30,7 +30,7 @@
         <span id="publishDate">Last Published: 2015-07-18</span>
                   &nbsp;| <span id="projectVersion">Version: 2.4.1-SNAPSHOT</span>
                       </div>
-            <div class="xright">                    <a href="./" title="SortPom">SortPom</a>
+            <div class="xright">                    <a href="./" title="SortPom Sorter">SortPom Sorter</a>
               
                     
       </div>
@@ -42,25 +42,19 @@
       <div id="navcolumn">
              
                     
-                                          <h5>Modules</h5>
+                                <h5>Parent Project</h5>
                   <ul>
                   <li class="none">
-                          <a href="sortpom-sorter/index.html" title="SortPom Sorter">SortPom Sorter</a>
-            </li>
-                  <li class="none">
-                          <a href="sortpom-maven-plugin/index.html" title="SortPom Plugin">SortPom Plugin</a>
+                          <a href="../index.html" title="SortPom">SortPom</a>
             </li>
           </ul>
                        <h5>Project Documentation</h5>
                   <ul>
-                                                                                                                                                                                                                                                                                                      <li class="expanded">
+                                                                                                                                                                                                                                                                  <li class="expanded">
                           <a href="project-info.html" title="Project Information">Project Information</a>
                     <ul>
                       <li class="none">
                           <a href="dependencies.html" title="Dependencies">Dependencies</a>
-            </li>
-                      <li class="none">
-                          <a href="dependency-convergence.html" title="Dependency Convergence">Dependency Convergence</a>
             </li>
                       <li class="none">
             <strong>Dependency Information</strong>
@@ -76,9 +70,6 @@
             </li>
                       <li class="none">
                           <a href="license.html" title="Project License">Project License</a>
-            </li>
-                      <li class="none">
-                          <a href="modules.html" title="Project Modules">Project Modules</a>
             </li>
                       <li class="none">
                           <a href="plugin-management.html" title="Plugin Management">Plugin Management</a>
@@ -97,7 +88,7 @@
             </li>
               </ul>
         </li>
-                                                                                                                                            <li class="collapsed">
+                                                                                                                                                                                                                    <li class="collapsed">
                           <a href="project-reports.html" title="Project Reports">Project Reports</a>
                   </li>
           </ul>
@@ -117,38 +108,37 @@
 <div class="source">
 <pre>&lt;dependency&gt;
   &lt;groupId&gt;com.github.ekryd.sortpom&lt;/groupId&gt;
-  &lt;artifactId&gt;sortpom-parent&lt;/artifactId&gt;
+  &lt;artifactId&gt;sortpom-sorter&lt;/artifactId&gt;
   &lt;version&gt;2.4.1-SNAPSHOT&lt;/version&gt;
-  &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</pre></div></div>
 <div class="section">
 <h3><a name="Apache_Buildr"></a>Apache Buildr</h3><a name="Apache_Buildr"></a>
 <div class="source">
-<pre>'com.github.ekryd.sortpom:sortpom-parent:pom:2.4.1-SNAPSHOT'</pre></div></div>
+<pre>'com.github.ekryd.sortpom:sortpom-sorter:jar:2.4.1-SNAPSHOT'</pre></div></div>
 <div class="section">
 <h3><a name="Apache_Ivy"></a>Apache Ivy</h3><a name="Apache_Ivy"></a>
 <div class="source">
-<pre>&lt;dependency org=&quot;com.github.ekryd.sortpom&quot; name=&quot;sortpom-parent&quot; rev=&quot;2.4.1-SNAPSHOT&quot;&gt;
-  &lt;artifact name=&quot;sortpom-parent&quot; type=&quot;pom&quot; /&gt;
+<pre>&lt;dependency org=&quot;com.github.ekryd.sortpom&quot; name=&quot;sortpom-sorter&quot; rev=&quot;2.4.1-SNAPSHOT&quot;&gt;
+  &lt;artifact name=&quot;sortpom-sorter&quot; type=&quot;jar&quot; /&gt;
 &lt;/dependency&gt;</pre></div></div>
 <div class="section">
 <h3><a name="Groovy_Grape"></a>Groovy Grape</h3><a name="Groovy_Grape"></a>
 <div class="source">
 <pre>@Grapes(
-@Grab(group='com.github.ekryd.sortpom', module='sortpom-parent', version='2.4.1-SNAPSHOT')
+@Grab(group='com.github.ekryd.sortpom', module='sortpom-sorter', version='2.4.1-SNAPSHOT')
 )</pre></div></div>
 <div class="section">
 <h3><a name="Grails"></a>Grails</h3><a name="Grails"></a>
 <div class="source">
-<pre>compile 'com.github.ekryd.sortpom:sortpom-parent:2.4.1-SNAPSHOT'</pre></div></div>
+<pre>compile 'com.github.ekryd.sortpom:sortpom-sorter:2.4.1-SNAPSHOT'</pre></div></div>
 <div class="section">
 <h3><a name="Leiningen"></a>Leiningen</h3><a name="Leiningen"></a>
 <div class="source">
-<pre>[com.github.ekryd.sortpom/sortpom-parent &quot;2.4.1-SNAPSHOT&quot;]</pre></div></div>
+<pre>[com.github.ekryd.sortpom/sortpom-sorter &quot;2.4.1-SNAPSHOT&quot;]</pre></div></div>
 <div class="section">
 <h3><a name="SBT"></a>SBT</h3><a name="SBT"></a>
 <div class="source">
-<pre>libraryDependencies += &quot;com.github.ekryd.sortpom&quot; % &quot;sortpom-parent&quot; % &quot;2.4.1-SNAPSHOT&quot;</pre></div></div></div>
+<pre>libraryDependencies += &quot;com.github.ekryd.sortpom&quot; % &quot;sortpom-sorter&quot; % &quot;2.4.1-SNAPSHOT&quot;</pre></div></div></div>
       </div>
     </div>
     <div class="clear">
