@@ -148,7 +148,7 @@
 <a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> skip;
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> SortPomImpl sortPomImpl = <strong class="jxr_keyword">new</strong> SortPomImpl();
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../sortpom/SortPomImpl.html">SortPomImpl</a> sortPomImpl = <strong class="jxr_keyword">new</strong> <a href="../sortpom/SortPomImpl.html">SortPomImpl</a>();
 <a class="jxr_linenumber" name="L144" href="#L144">144</a> 
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>     <strong class="jxr_keyword">public</strong> <a href="../sortpom/VerifyMojo.html">VerifyMojo</a>() {
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>     }
@@ -171,7 +171,7 @@
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 
 <a class="jxr_linenumber" name="L164" href="#L164">164</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setup() <strong class="jxr_keyword">throws</strong> MojoFailureException {
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>             PluginParameters pluginParameters = <strong class="jxr_keyword">new</strong> PluginParametersBuilder()
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>             <a href="../sortpom/parameter/PluginParameters.html">PluginParameters</a> pluginParameters = <strong class="jxr_keyword">new</strong> <a href="../sortpom/parameter/PluginParametersBuilder.html">PluginParametersBuilder</a>()
 <a class="jxr_linenumber" name="L167" href="#L167">167</a>                     .setPomFile(pomFile)
 <a class="jxr_linenumber" name="L168" href="#L168">168</a>                     .setBackupInfo(createBackupFile, backupFileExtension)
 <a class="jxr_linenumber" name="L169" href="#L169">169</a>                     .setEncoding(encoding)
