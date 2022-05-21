@@ -23,7 +23,7 @@ public class TextWrapperCreator {
         if (isSingleNewLine(text)) {
             return SingleNewlineInTextWrapper.INSTANCE;
         } else if (isBlankLineOrLines(text)) {
-            return new UnsortedWrapper<>(new NewlineText());
+            return new UnsortedWrapper<>(new NewlineText(text.getOwnerDocument()));
         }
         return new UnsortedWrapper<>(text);
     }

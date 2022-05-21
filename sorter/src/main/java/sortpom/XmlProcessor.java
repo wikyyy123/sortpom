@@ -44,8 +44,8 @@ public class XmlProcessor {
 
     /** Creates a new dom document that contains the sorted xml. */
     public void sortXml() {
-        newDocument = (Document) originalDocument.cloneNode(false);
-        final Element rootElement = (Element) originalDocument.getDocumentElement().cloneNode(true);
+        newDocument = (Document) originalDocument.cloneNode(true);
+        final Element rootElement = newDocument.getDocumentElement();
 
         HierarchyRootWrapper rootWrapper = factory.createFromRootElement(rootElement);
 

@@ -1,6 +1,7 @@
 package sortpom.jdomcontent;
 
 
+import com.sun.org.apache.xerces.internal.dom.ChildNode;
 import org.w3c.dom.*;
 
 /**
@@ -11,8 +12,13 @@ import org.w3c.dom.*;
  * @author bjorn
  * @since 2012-05-17
  */
-public class NewlineText implements Comment {
+public class NewlineText extends ChildNode implements Comment {
     private static final long serialVersionUID = -7552189498553321263L;
+    private final Document ownerDocument;
+
+    public NewlineText(Document ownerDocument) {
+        this.ownerDocument = ownerDocument;
+    }
 
     /**
      * This returns a <code>String</code> representation of the
@@ -86,7 +92,7 @@ public class NewlineText implements Comment {
 
     @Override
     public short getNodeType() {
-        return 0;
+        return Node.COMMENT_NODE;
     }
 
     @Override
@@ -126,7 +132,7 @@ public class NewlineText implements Comment {
 
     @Override
     public Document getOwnerDocument() {
-        return null;
+        return ownerDocument;
     }
 
     @Override

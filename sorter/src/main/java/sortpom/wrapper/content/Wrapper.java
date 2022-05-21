@@ -50,7 +50,7 @@ public interface Wrapper<T extends Node> {
      * @return The debug string
      */
     default String toString(String indent) {
-        return indent + toString();
+        return indent + this;
     }
 
 }
