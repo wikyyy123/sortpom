@@ -38,7 +38,7 @@ class ExpandEmptyElementTest {
                 .setIndent(2, false, false)
                 .build());
 
-        String actual = xmlOutputGenerator.getSortedXml(createXmlFragment());
+        String actual = xmlOutputGenerator.getSortedXml(createXmlFragment("Gurka"));
         assertEquals(expectedValue, actual);
     }
 }

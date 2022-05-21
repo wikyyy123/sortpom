@@ -28,14 +28,6 @@ public abstract class XmlWriter extends Writer {
      * Only write string or write single character is allowed
      */
     @Override
-    public void write(char[] cbuf, int off, int len) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Only write string or write single character is allowed
-     */
-    @Override
     public Writer append(CharSequence csq) {
         throw new UnsupportedOperationException();
     }

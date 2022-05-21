@@ -1,10 +1,8 @@
 package sortpom.wrapper.content;
 
-import org.jdom.Content;
-import org.jdom.Element;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import sortpom.parameter.DependencySortOrder;
-
-import java.util.List;
 
 /**
  * A wrapper that contains a exclusion element. The element is sorted according to a predetermined order.
@@ -26,12 +24,12 @@ public class ExclusionSortedWrapper extends SortedWrapper {
 
     @SuppressWarnings("unchecked")
     public void setSortOrder(DependencySortOrder childElementNames) {
-        List<Element> children = getContent().getChildren();
+        var children = getContent().getChildNodes();
         this.childElementSorter = new ChildElementSorter(childElementNames, children);
     }
 
     @Override
-    public boolean isBefore(final Wrapper<? extends Content> wrapper) {
+    public boolean isBefore(final Wrapper<? extends Node> wrapper) {
         if (wrapper instanceof ExclusionSortedWrapper) {
             return isBeforeExclusionSortedWrapper((ExclusionSortedWrapper) wrapper);
         }

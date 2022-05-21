@@ -1,9 +1,8 @@
 package sortpom.verify;
 
-import org.jdom.Element;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import sortpom.util.XmlOrderedResult;
-
-import java.util.List;
 
 /**
  * @author bjorn
@@ -19,31 +18,31 @@ public class ElementComparator {
     }
 
     public XmlOrderedResult isElementOrdered() {
-        if (!originalElement.getName().equals(newElement.getName())) {
-            return XmlOrderedResult.nameDiffers(originalElement.getName(), newElement.getName());
+        if (!originalElement.getNodeName().equals(newElement.getNodeName())) {
+            return XmlOrderedResult.nameDiffers(originalElement.getNodeName(), newElement.getNodeName());
         }
         if (isEqualsIgnoringWhitespace()) {
-            return XmlOrderedResult.textContentDiffers(originalElement.getName(), originalElement.getText(), newElement.getText());
+            return XmlOrderedResult.textContentDiffers(originalElement.getNodeName(), originalElement.getTextContent(), newElement.getTextContent());
         }
         //noinspection unchecked
-        return isChildrenOrdered(originalElement.getName(), originalElement.getChildren(), newElement.getChildren());
+        return isChildrenOrdered(originalElement.getNodeName(), originalElement.getChildNodes(), newElement.getChildNodes());
     }
 
     private boolean isEqualsIgnoringWhitespace() {
-        return !originalElement.getText().replaceAll("\\s", "").equals(newElement.getText().replaceAll("\\s", ""));
+        return !originalElement.getTextContent().replaceAll("\\s", "").equals(newElement.getTextContent().replaceAll("\\s", ""));
     }
 
-    private XmlOrderedResult isChildrenOrdered(String name, List<Element> originalElementChildren, List<Element> newElementChildren) {
-        int size = Math.min(originalElementChildren.size(), newElementChildren.size());
+    private XmlOrderedResult isChildrenOrdered(String name, NodeList originalElementChildren, NodeList newElementChildren) {
+        int size = Math.min(originalElementChildren.getLength(), newElementChildren.getLength());
         for (int i = 0; i < size; i++) {
-            ElementComparator elementComparator = new ElementComparator(originalElementChildren.get(i), newElementChildren.get(i));
+            ElementComparator elementComparator = new ElementComparator((Element) originalElementChildren.item(i), (Element) newElementChildren.item(i));
             XmlOrderedResult elementOrdered = elementComparator.isElementOrdered();
             if (!elementOrdered.isOrdered()) {
                 return elementOrdered;
             }
         }
-        if (originalElementChildren.size() != newElementChildren.size()) {
-            return XmlOrderedResult.childElementDiffers(name, originalElementChildren.size(), newElementChildren.size());
+        if (originalElementChildren.getLength() != newElementChildren.getLength()) {
+            return XmlOrderedResult.childElementDiffers(name, originalElementChildren.getLength(), newElementChildren.getLength());
         }
         return XmlOrderedResult.ordered();
     }

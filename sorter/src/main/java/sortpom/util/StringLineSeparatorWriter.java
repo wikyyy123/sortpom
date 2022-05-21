@@ -35,6 +35,11 @@ public class StringLineSeparatorWriter extends XmlWriter {
     }
 
     @Override
+    public void write(char[] cbuf, int off, int len) {
+        out.write(cbuf, off, len);
+    }
+
+    @Override
     public void close() {
         writeCharacterBuffer();
     }

@@ -1,14 +1,16 @@
 package sortpom;
 
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 import sortpom.util.XmlOrderedResult;
 import sortpom.verify.ElementComparator;
 import sortpom.wrapper.operation.HierarchyRootWrapper;
 import sortpom.wrapper.operation.WrapperFactory;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -35,15 +37,15 @@ public class XmlProcessor {
      * @throws org.jdom.JDOMException the jDOM exception
      * @throws java.io.IOException    Signals that an I/O exception has occurred.
      */
-    public void setOriginalXml(final InputStream originalXml) throws JDOMException, IOException {
-        SAXBuilder parser = new SAXBuilder();
-        originalDocument = parser.build(originalXml);
+    public void setOriginalXml(final InputStream originalXml) throws ParserConfigurationException, IOException, SAXException {
+        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        originalDocument = builder.parse(originalXml);
     }
 
     /** Creates a new dom document that contains the sorted xml. */
     public void sortXml() {
-        newDocument = (Document) originalDocument.clone();
-        final Element rootElement = (Element) originalDocument.getRootElement().clone();
+        newDocument = (Document) originalDocument.cloneNode(false);
+        final Element rootElement = (Element) originalDocument.getDocumentElement().cloneNode(true);
 
         HierarchyRootWrapper rootWrapper = factory.createFromRootElement(rootElement);
 
@@ -53,7 +55,10 @@ public class XmlProcessor {
         rootWrapper.sortStructureElements();
         rootWrapper.connectXmlStructure();
 
-        newDocument.setRootElement(rootWrapper.getElementContent().getContent());
+//        var node = newDocument.importNode(rootWrapper.getElementContent().getContent(), true);
+        var node = newDocument.adoptNode(rootWrapper.getElementContent().getContent());
+        //newDocument.replaceChild(node, originalDocument.getDocumentElement());
+        newDocument.appendChild(node);
     }
 
     public Document getNewDocument() {
@@ -61,7 +66,7 @@ public class XmlProcessor {
     }
 
     public XmlOrderedResult isXmlOrdered() {
-        ElementComparator elementComparator = new ElementComparator(originalDocument.getRootElement(), newDocument.getRootElement());
+        ElementComparator elementComparator = new ElementComparator(originalDocument.getDocumentElement(), newDocument.getDocumentElement());
         return elementComparator.isElementOrdered();
     }
 

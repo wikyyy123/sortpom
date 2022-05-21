@@ -1,9 +1,9 @@
 package sortpom.wrapper.content;
 
-import org.jdom.Content;
-import org.jdom.Element;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
-import java.util.List;
+import java.util.stream.IntStream;
 
 import static sortpom.wrapper.content.Phase.compareTo;
 
@@ -28,25 +28,25 @@ public class ExecutionSortedWrapper extends SortedWrapper {
      */
     public ExecutionSortedWrapper(final Element element, final int sortOrder) {
         super(element, sortOrder);
-        @SuppressWarnings("unchecked")
-        List<Element> children = getContent().getChildren();
-
-        phase = children.stream()
-                .filter(e -> e.getName().equals("phase") && e.getText() != null)
-                .map(e -> Phase.getPhase(e.getTextTrim()))
+        var children = getContent().getChildNodes();
+        var childStream = IntStream.range(0, children.getLength())
+                                   .mapToObj(children::item);
+        phase = childStream
+                .filter(e -> e.getNodeName().equals("phase") && e.getTextContent() != null)
+                .map(e -> Phase.getPhase(e.getTextContent().trim()))
                 .findFirst()
                 .orElse(null);
 
-        id = children.stream()
-                .filter(e -> e.getName().equals("id"))
-                .map(Element::getTextTrim)
+        id = childStream
+                .filter(e -> e.getNodeName().equals("id"))
+                .map(element1 -> element1.getTextContent().trim())
                 .findFirst()
                 .orElse("");
 
     }
 
     @Override
-    public boolean isBefore(final Wrapper<? extends Content> wrapper) {
+    public boolean isBefore(final Wrapper<? extends Node> wrapper) {
         if (wrapper instanceof ExecutionSortedWrapper) {
             return isBeforeWrapper((ExecutionSortedWrapper) wrapper);
         }

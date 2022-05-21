@@ -1,7 +1,8 @@
 package sortpom.wrapper.content;
 
-import org.jdom.Content;
-import org.jdom.Element;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * A wrapper that contains an element. The element is sorted according to a predetermined order.
@@ -27,7 +28,7 @@ public class SortedWrapper implements Wrapper<Element> {
     }
 
     @Override
-    public boolean isBefore(final Wrapper<? extends Content> wrapper) {
+    public boolean isBefore(final Wrapper<? extends Node> wrapper) {
         return !(wrapper instanceof SortedWrapper) || isBeforeSortedWrapper((SortedWrapper) wrapper);
     }
 

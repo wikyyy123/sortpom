@@ -1,6 +1,6 @@
 package sortpom.wrapper;
 
-import org.jdom.Element;
+import org.w3c.dom.Element;
 import sortpom.parameter.DependencySortOrder;
 import sortpom.parameter.PluginParameters;
 import sortpom.wrapper.content.*;

@@ -1,7 +1,7 @@
 package sortpom.wrapper.content;
 
-import org.jdom.Content;
-import org.jdom.Element;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * A wrapper that lets is element be unsorted
@@ -9,7 +9,7 @@ import org.jdom.Element;
  * @param <T>
  * @author Bjorn
  */
-public class UnsortedWrapper<T extends Content> implements Wrapper<T> {
+public class UnsortedWrapper<T extends Node> implements Wrapper<T> {
 
     /** The wrapped dom content. */
     private final T content;
@@ -31,7 +31,7 @@ public class UnsortedWrapper<T extends Content> implements Wrapper<T> {
 
     /** @see Wrapper#isBefore(Wrapper) */
     @Override
-    public boolean isBefore(final Wrapper<? extends Content> wrapper) {
+    public boolean isBefore(final Wrapper<? extends Node> wrapper) {
         throw new UnsupportedOperationException("Cannot be sorted");
     }
 

@@ -1,7 +1,7 @@
 package sortpom.wrapper.operation;
 
-import org.jdom.Attribute;
-import org.jdom.Element;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Element;
 import sortpom.wrapper.content.Wrapper;
 
 import java.util.ArrayList;
@@ -15,27 +15,31 @@ import java.util.List;
  * @since 2013-11-01
  */
 class SortAttributesOperation implements HierarchyWrapperOperation {
-    private static final Comparator<Attribute> ATTRIBUTE_COMPARATOR = Comparator.comparing(Attribute::getName);
+    private static final Comparator<Attr> ATTRIBUTE_COMPARATOR = Comparator.comparing(Attr::getName);
 
     /** Sort attributes of each element */
     @Override
     public void processElement(Wrapper<Element> elementWrapper) {
         Element element = elementWrapper.getContent();
-        element.setAttributes(getSortedAttributes(element));
+        var sortedAttributes = getSortedAttributes(element);
+        sortedAttributes.forEach(element::setAttributeNode);
     }
 
-    private List<Attribute> getSortedAttributes(Element element) {
-        final List<Attribute> attributes = getAttributeList(element);
+    private List<Attr> getSortedAttributes(Element element) {
+        if (!element.hasAttributes()) {
+            return List.of();
+        }
 
-        attributes.forEach(Attribute::detach);
+        var attributes = element.getAttributes();
 
-        attributes.sort(ATTRIBUTE_COMPARATOR);
-        return attributes;
-    }
+        var sortedAttributes = new ArrayList<Attr>();
+        for (int i = 0; i < attributes.getLength(); i++) {
+            sortedAttributes.add((Attr) attributes.item(i));
+        }
+        sortedAttributes.forEach(attr -> element.removeAttribute(attr.getName()));
 
-    @SuppressWarnings("unchecked")
-    private List<Attribute> getAttributeList(final Element element) {
-        return new ArrayList<>(element.getAttributes());
+        sortedAttributes.sort(ATTRIBUTE_COMPARATOR);
+        return sortedAttributes;
     }
 
 }

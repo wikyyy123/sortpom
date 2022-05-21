@@ -19,7 +19,7 @@ class LineSeparatorTest {
                 .setIndent(2, false, false)
                 .build());
 
-        String actual = xmlOutputGenerator.getSortedXml(createXmlFragment());
+        String actual = xmlOutputGenerator.getSortedXml(createXmlFragment("Gurka"));
         assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + lineSeparator +
                 "<Gurka />" + lineSeparator, actual);
     }

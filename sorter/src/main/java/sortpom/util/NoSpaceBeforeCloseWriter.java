@@ -1,5 +1,7 @@
 package sortpom.util;
 
+import java.io.IOException;
+
 /**
  * This Writer will remove the space before the slash in a single xml tag.
  * The rest of the methods will only be delegated.
@@ -26,6 +28,11 @@ public class NoSpaceBeforeCloseWriter extends XmlWriter {
     @Override
     public void write(int c) {
         out.write(c);
+    }
+
+    @Override
+    public void write(char[] cbuf, int off, int len) throws IOException {
+        out.write(cbuf, off, len);
     }
 
     @Override

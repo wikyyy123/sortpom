@@ -1,10 +1,8 @@
 package sortpom.wrapper.content;
 
-import org.jdom.Content;
-import org.jdom.Element;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import sortpom.parameter.DependencySortOrder;
-
-import java.util.List;
 
 /**
  * A wrapper that contains a plugin element. The element is sorted according to a predetermined order.
@@ -26,13 +24,13 @@ public class PluginSortedWrapper extends SortedWrapper {
 
     @SuppressWarnings("unchecked")
     public void setSortOrder(DependencySortOrder dependencySortOrder) {
-        List<Element> children = getContent().getChildren();
+        var children = getContent().getChildNodes();
         this.childElementSorter = new ChildElementSorter(dependencySortOrder, children);
         childElementSorter.emptyGroupIdIsFilledWithDefaultMavenGroupId();
     }
 
     @Override
-    public boolean isBefore(final Wrapper<? extends Content> wrapper) {
+    public boolean isBefore(final Wrapper<? extends Node> wrapper) {
         if (wrapper instanceof PluginSortedWrapper) {
             return isBeforePluginSortedWrapper((PluginSortedWrapper) wrapper);
         }

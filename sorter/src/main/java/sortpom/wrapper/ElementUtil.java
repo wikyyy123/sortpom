@@ -1,6 +1,7 @@
 package sortpom.wrapper;
 
-import org.jdom.Element;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Contains utility methods for Xml elements
@@ -14,16 +15,16 @@ final class ElementUtil {
     }
 
     /** Returns fully qualified name for an Xml element. */
-    static String getDeepName(final Element element) {
+    static String getDeepName(final Node element) {
         if (element == null) {
             return "";
         }
-        return getDeepName(element.getParentElement()) + '/' + element.getName();
+        return getDeepName(element.getParentNode()) + '/' + element.getNodeName();
     }
 
     /** Returns true if an elements parents name is same as argument */
     static boolean isElementParentName(Element element, String name) {
-        Element parent = element.getParentElement();
+        Node parent = element.getParentNode();
         if (parent == null) {
             return false;
         }
@@ -31,7 +32,7 @@ final class ElementUtil {
     }
 
     /** Returns true if an elements name is same as argument */
-    static boolean isElementName(Element element, String name) {
-        return element.getName().equals(name);
+    static boolean isElementName(Node element, String name) {
+        return element.getNodeName().equals(name);
     }
 }

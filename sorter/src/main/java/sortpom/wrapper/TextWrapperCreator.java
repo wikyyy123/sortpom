@@ -1,7 +1,7 @@
 package sortpom.wrapper;
 
-import org.jdom.Content;
-import org.jdom.Text;
+import org.w3c.dom.Node;
+import org.w3c.dom.Text;
 import sortpom.jdomcontent.NewlineText;
 import sortpom.parameter.PluginParameters;
 import sortpom.wrapper.content.SingleNewlineInTextWrapper;
@@ -19,7 +19,7 @@ public class TextWrapperCreator {
         keepBlankLines = pluginParameters.keepBlankLines;
     }
 
-    Wrapper<Content> createWrapper(Text text) {
+    Wrapper<Node> createWrapper(Text text) {
         if (isSingleNewLine(text)) {
             return SingleNewlineInTextWrapper.INSTANCE;
         } else if (isBlankLineOrLines(text)) {
@@ -29,13 +29,13 @@ public class TextWrapperCreator {
     }
 
     private boolean isSingleNewLine(Text content) {
-        return content.getText().matches("[\\t ]*[\\r]?[\\n]?[\\t ]*");
+        return content.getTextContent().matches("[\\t ]*[\\r]?[\\n]?[\\t ]*");
     }
 
     boolean isBlankLineOrLines(Text content) {
         if (!keepBlankLines) {
             return false;
         }
-        return content.getText().matches("^\\s*?([\\r\\n])\\s*$");
+        return content.getTextContent().matches("^\\s*?([\\r\\n])\\s*$");
     }
 }

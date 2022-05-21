@@ -1,7 +1,7 @@
 package sortpom.wrapper;
 
-import org.jdom.*;
-import org.jdom.input.SAXBuilder;
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
 import sortpom.exception.FailureException;
 import sortpom.parameter.PluginParameters;
 import sortpom.util.FileUtil;
@@ -10,9 +10,12 @@ import sortpom.wrapper.content.Wrapper;
 import sortpom.wrapper.operation.HierarchyRootWrapper;
 import sortpom.wrapper.operation.WrapperFactory;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Concrete implementation of a wrapper factory that sorts xml according to
@@ -51,7 +54,7 @@ public class WrapperFactoryImpl implements WrapperFactory {
         textWrapperCreator.setup(pluginParameters);
     }
 
-    /** @see WrapperFactory#createFromRootElement(org.jdom.Element) */
+    /** @see WrapperFactory#createFromRootElement(org.w3c.dom.Element) */
     public HierarchyRootWrapper createFromRootElement(final Element rootElement) {
         initializeSortOrderMap();
         return new HierarchyRootWrapper(create(rootElement));
@@ -61,19 +64,16 @@ public class WrapperFactoryImpl implements WrapperFactory {
     private void initializeSortOrderMap() {
         try {
             Document document = createDocumentFromDefaultSortOrderFile();
-            addElementsToSortOrderMap(document.getRootElement(), SORT_ORDER_BASE);
-        } catch (IOException | JDOMException e) {
+            addElementsToSortOrderMap(document.getDocumentElement(), SORT_ORDER_BASE);
+        } catch (IOException | ParserConfigurationException | SAXException e) {
             throw new FailureException(e.getMessage(), e);
         }
     }
 
     Document createDocumentFromDefaultSortOrderFile()
-            throws JDOMException, IOException {
-        try (Reader reader = new StringReader(fileUtil.getDefaultSortOrderXml())) {
-            SAXBuilder parser = new SAXBuilder();
-            parser.setExpandEntities(false);
-            return parser.build(reader);
-        }
+        throws ParserConfigurationException, IOException, SAXException {
+        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        return builder.parse(new ByteArrayInputStream(fileUtil.getDefaultSortOrderXml().getBytes(StandardCharsets.UTF_8)));
     }
 
     /**
@@ -82,19 +82,22 @@ public class WrapperFactoryImpl implements WrapperFactory {
      */
     private void addElementsToSortOrderMap(final Element element, int baseSortOrder) {
         elementSortOrderMap.addElement(element, baseSortOrder);
-        final List<Element> castToChildElementList = castToChildElementList(element);
+        var children = element.getChildNodes();
         // Increments the sort order index for each element
         int sortOrder = baseSortOrder;
-        for (Element child : castToChildElementList) {
-            sortOrder += SORT_ORDER_INCREMENT;
-            addElementsToSortOrderMap(child, sortOrder);
+        for (int i = 0; i < children.getLength(); i++) {
+            if (children.item(i) instanceof Element) {
+                var childElement = (Element) children.item(i);
+                sortOrder += SORT_ORDER_INCREMENT;
+                addElementsToSortOrderMap(childElement, sortOrder);
+            }
         }
     }
 
-    /** @see WrapperFactory#create(org.jdom.Content) */
+    /** @see WrapperFactory#create(org.w3c.dom.Node) */
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends Content> Wrapper<T> create(final T content) {
+    public <T extends Node> Wrapper<T> create(final T content) {
         if (content instanceof Element) {
             return (Wrapper<T>) elementWrapperCreator.createWrapper((Element) content);
         }
@@ -105,15 +108,6 @@ public class WrapperFactoryImpl implements WrapperFactory {
             return (Wrapper<T>) textWrapperCreator.createWrapper((Text) content);
         }
         return new UnsortedWrapper<>(content);
-    }
-
-    /**
-     * Performs getChildren for an element and casts the result to ArrayList of
-     * Elements.
-     */
-    @SuppressWarnings("unchecked")
-    private List<Element> castToChildElementList(final Element element) {
-        return new ArrayList<>(element.getChildren());
     }
 
 }

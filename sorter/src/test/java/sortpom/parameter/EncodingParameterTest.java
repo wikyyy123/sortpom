@@ -39,7 +39,7 @@ class EncodingParameterTest {
                 .setIndent(2, false, false)
                 .build());
 
-        String actual = xmlOutputGenerator.getSortedXml(createXmlFragment());
+        String actual = xmlOutputGenerator.getSortedXml(createXmlFragment("Gurka"));
         assertThat(actual, is("<?xml version=\"1.0\" encoding=\"gurka-2000\"?>\n<Gurka></Gurka>\n"));
     }
 

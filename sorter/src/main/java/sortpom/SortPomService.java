@@ -1,7 +1,7 @@
 package sortpom;
 
-import org.jdom.Document;
-import org.jdom.JDOMException;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 import sortpom.exception.FailureException;
 import sortpom.logger.SortPomLogger;
 import sortpom.parameter.PluginParameters;
@@ -10,6 +10,7 @@ import sortpom.util.FileUtil;
 import sortpom.util.XmlOrderedResult;
 import sortpom.wrapper.WrapperFactoryImpl;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 
 /**
@@ -71,7 +72,7 @@ public class SortPomService {
 
         try (ByteArrayInputStream originalXmlInputStream = new ByteArrayInputStream(xml.getBytes(encoding))) {
             xmlProcessor.setOriginalXml(originalXmlInputStream);
-        } catch (JDOMException | IOException e) {
+        } catch (IOException | ParserConfigurationException | SAXException e) {
             throw new FailureException("Could not sort " + pomFile.getAbsolutePath() + " content: " + xml, e);
         }
         xmlProcessor.sortXml();

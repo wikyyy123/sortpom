@@ -1,9 +1,10 @@
 package sortpom.wrapper;
 
-import org.jdom.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.Element;
 import refutils.ReflectionHelper;
+import sortpom.sort.XmlFragment;
 
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -21,9 +22,9 @@ class ElementUtilTest {
 
     @BeforeEach
     void setUp() {
-        parent = new Element("Parent");
-        child = new Element("Child");
-        parent.addContent(child);
+        parent = XmlFragment.createXmlFragment("Parent").getDocumentElement();
+        child = XmlFragment.createXmlFragment("Child").getDocumentElement();
+        parent.appendChild(child);
     }
 
     @Test

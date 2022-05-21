@@ -1,7 +1,7 @@
 package sortpom.wrapper.operation;
 
-import org.jdom.Content;
-import org.jdom.Element;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import sortpom.wrapper.content.Wrapper;
 
 /**
@@ -14,16 +14,24 @@ import sortpom.wrapper.content.Wrapper;
 class DetachOperation implements HierarchyWrapperOperation {
     /** Detach each 'other content' */
     @Override
-    public void processOtherContent(Wrapper<Content> contentWrapper) {
-        contentWrapper.getContent().detach();
+    public void processOtherContent(Wrapper<Node> contentWrapper) {
+        var content = contentWrapper.getContent();
+        var parentNode = content.getParentNode();
+        if (parentNode != null) {
+            parentNode.removeChild(content);
+        }
     }
 
     /** Detach each xml element */
     @Override
     public void processElement(Wrapper<Element> elementWrapper) {
         Element content = elementWrapper.getContent();
-        content.detach();
-        content.removeContent();
+        var parentNode = content.getParentNode();
+        if (parentNode != null) {
+            parentNode.removeChild(content);
+        }
+//        content.detach();
+//        content.removeContent();
     }
 
 }

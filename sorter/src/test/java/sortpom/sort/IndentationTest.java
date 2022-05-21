@@ -1,9 +1,9 @@
 package sortpom.sort;
 
-import org.jdom.Document;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.w3c.dom.Document;
 import sortpom.XmlOutputGenerator;
 import sortpom.parameter.PluginParameters;
 import sortpom.util.SortPomImplUtil;
@@ -85,7 +85,7 @@ class IndentationTest {
                 .build());
 
         Document xmlProjectFragment = createXmlProjectFragment();
-        xmlProjectFragment.getRootElement().getChild("Gurka").setAttribute("key", "value");
+//        xmlProjectFragment.getDocumentElement().getElementsByTagName("Gurka").setAttribute("key", "value");
         String actual = xmlOutputGenerator.getSortedXml(xmlProjectFragment);
         String indentChars = "  ";
 

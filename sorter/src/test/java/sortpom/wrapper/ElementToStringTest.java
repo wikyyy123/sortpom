@@ -1,17 +1,16 @@
 package sortpom.wrapper;
 
 import org.apache.commons.io.IOUtils;
-import org.jdom.Document;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.Document;
 import sortpom.parameter.PluginParameters;
 import sortpom.util.FileUtil;
 import sortpom.wrapper.operation.HierarchyRootWrapper;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,7 +22,7 @@ class ElementToStringTest {
         assertEquals(expected, getToStringOnRootElementWrapper());
     }
 
-    private String getToStringOnRootElementWrapper() throws IOException, JDOMException {
+    private String getToStringOnRootElementWrapper() throws Exception {
         PluginParameters pluginParameters = PluginParameters.builder()
                 .setPomFile(null).setFileOutput(false, ".bak", null, false)
                 .setEncoding("UTF-8")
@@ -36,12 +35,12 @@ class ElementToStringTest {
         fileUtil.setup(pluginParameters);
 
         String xml = IOUtils.toString(new FileInputStream("src/test/resources/" + "Real1_input.xml"), StandardCharsets.UTF_8);
-        SAXBuilder parser = new SAXBuilder();
-        Document document = parser.build(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
+        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        Document document = builder.parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
 
         WrapperFactoryImpl wrapperFactory = new WrapperFactoryImpl(fileUtil);
         wrapperFactory.setup(pluginParameters);
-        HierarchyRootWrapper rootWrapper = wrapperFactory.createFromRootElement(document.getRootElement());
+        HierarchyRootWrapper rootWrapper = wrapperFactory.createFromRootElement(document.getDocumentElement());
         rootWrapper.createWrappedStructure(wrapperFactory);
 
         return rootWrapper.toString();

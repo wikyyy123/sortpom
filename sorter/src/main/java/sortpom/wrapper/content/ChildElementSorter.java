@@ -1,11 +1,10 @@
 package sortpom.wrapper.content;
 
-import org.jdom.Element;
+import org.w3c.dom.NodeList;
 import sortpom.parameter.DependencySortOrder;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -20,14 +19,16 @@ public class ChildElementSorter {
 
     private final LinkedHashMap<String, String> childElementTextMappedBySortedNames = new LinkedHashMap<>();
 
-    public ChildElementSorter(DependencySortOrder dependencySortOrder, List<Element> children) {
+    public ChildElementSorter(DependencySortOrder dependencySortOrder, NodeList children) {
         Collection<String> childElementNames = dependencySortOrder.getChildElementNames();
 
         childElementNames.forEach(name ->
                 childElementTextMappedBySortedNames.put(name.toUpperCase(), ""));
 
-        children.forEach(element ->
-                childElementTextMappedBySortedNames.replace(element.getName().toUpperCase(), element.getTextTrim()));
+        for (int i = 0; i < children.getLength(); i++) {
+            var element = children.item(i);
+            childElementTextMappedBySortedNames.replace(element.getNodeName().toUpperCase(), element.getTextContent().trim());
+        }
     }
 
     private ChildElementSorter() {

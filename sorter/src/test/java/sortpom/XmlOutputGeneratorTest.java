@@ -1,6 +1,6 @@
 package sortpom;
 
-import org.jdom.Document;
+import org.w3c.dom.Document;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import sortpom.exception.FailureException;
@@ -25,9 +25,9 @@ class XmlOutputGeneratorTest {
     @Test
     void simulateIOExceptionToTriggerExceptionMessage() {
 
-        Document document = spy(createXmlFragment());
+        Document document = spy(createXmlFragment("Gurka"));
         // Simulate an IOException (a check one, no less)
-        when(document.getContent()).thenAnswer(invocation -> {
+        when(document.getDocumentElement()).thenAnswer(invocation -> {
             throw new IOException();
         });
 

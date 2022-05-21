@@ -1,8 +1,8 @@
 package sortpom.wrapper;
 
-import org.jdom.Text;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.w3c.dom.Text;
 import sortpom.wrapper.content.UnsortedWrapper;
 
 import static org.hamcrest.MatcherAssert.assertThat;
