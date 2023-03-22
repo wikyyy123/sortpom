@@ -1,4 +1,5 @@
 # Sortpom Maven Plugin ![Icon](https://raw.githubusercontent.com/Ekryd/sortpom/master/misc/Sortpom.png)
+# Sortpom Maven Plugin ![Icon](https://raw.githubusercontent.com/Ekryd/sortpom/master/misc/Sortpom.png)
 
 [![Build Status](https://circleci.com/gh/Ekryd/sortpom.svg?style=svg)](https://app.circleci.com/pipelines/github/Ekryd/sortpom)
 [![Coverage Status](https://coveralls.io/repos/github/Ekryd/sortpom/badge.svg?branch=master)](https://coveralls.io/github/Ekryd/sortpom?branch=master)
